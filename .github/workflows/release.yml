@@ -6,6 +6,10 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
+# Required permissions for creating releases
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: windows-latest
@@ -33,6 +37,7 @@ jobs:
             -p:PublishSingleFile=true `
             -p:IncludeNativeLibrariesForSelfExtract=true `
             -p:EnableMsixTooling=true `
+            -p:WindowsAppSDKSelfContained=true `
             -p:DebugType=None `
             -p:PublishTrimmed=false `
             -o ./publish/Winotch-x64
@@ -59,5 +64,6 @@ jobs:
             ./publish/Winotch-x64/Winotch-x64.sha256.txt
           generate_release_notes: true
           draft: true
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
