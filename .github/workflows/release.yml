@@ -32,6 +32,7 @@ jobs:
             --self-contained true `
             -p:PublishSingleFile=true `
             -p:IncludeNativeLibrariesForSelfExtract=true `
+            -p:EnableMsixTooling=true `
             -p:DebugType=None `
             -p:PublishTrimmed=false `
             -o ./publish/Winotch-x64
